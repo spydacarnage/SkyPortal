@@ -84,7 +84,7 @@ namespace SkyInsurance.SkyPortal.Controllers
         public ActionResult Temp(string message)
         {
             var server = Request.Url.AbsoluteUri.Replace(Request.Url.AbsolutePath, "");
-            var response = HttpSender.SendXML($"{server}/TCAS/Policy", message);
+            var response = HttpSender.SendXML($"http://skyportal.apphb.com/TCAS/Policy", message);
             if (response.Exception == null)
             {
                 return Content(response.Message);
