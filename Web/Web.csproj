@@ -94,15 +94,42 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Classes\ChangeCollection.cs" />
+    <Compile Include="Classes\SelectableCollection.cs" />
+    <Compile Include="Classes\SendForm.cs" />
+    <Compile Include="Classes\XmlAddress.cs" />
+    <Compile Include="Classes\XmlAppointment.cs" />
+    <Compile Include="Classes\XmlCustomer.cs" />
+    <Compile Include="Classes\XmlMessage.cs" />
+    <Compile Include="Classes\XmlPolicy.cs" />
+    <Compile Include="Classes\XmlVehicle.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TCASController.cs" />
+    <Compile Include="Enums\CustomerStatus.cs" />
+    <Compile Include="Enums\EnumString.cs" />
+    <Compile Include="Enums\MessageStatus.cs" />
+    <Compile Include="Enums\PolicyStatus.cs" />
+    <Compile Include="Enums\VehicleStatus.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\BaseEntity.cs" />
+    <Compile Include="Models\Collection.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\DatedEntity.cs" />
+    <Compile Include="Models\IncomingMessage.cs" />
+    <Compile Include="Models\Policy.cs" />
+    <Compile Include="Models\PolicyCollection.cs" />
+    <Compile Include="Models\Vehicle.cs" />
+    <Compile Include="Models\VehicleCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
+    <Content Include="Views\TCAS\Temp.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -112,7 +139,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <PropertyGroup>

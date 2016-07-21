@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Temp";
+}
+
+<h1>Temp</h1>
+<p>Sending to: /TCAS/Policy </p>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <textarea style="width: 750px; height: 500px; max-width: 750px" name="Message" id="Message">
+<?xml version="1.0" encoding="UTF-8" ?>
+    <message>
+            <messageType>MTA</messageType>
+            <insurancePolicy>
+                <policyReference>ZTEST43</policyReference>
+                <policyUnderwriter>Markerstudy</policyUnderwriter>
+                <policyMileage>10000</policyMileage>
+                <policyStartDate>2016-07-01</policyStartDate>
+                <policyEndDate>2017-06-30</policyEndDate>
+                <policyEffectiveDate>2016-07-01</policyEffectiveDate>
+                <businessType>NB</businessType>
+            </insurancePolicy>
+            <customer>
+                <customerReference>SMITHJ142</customerReference>
+                <title>Mr</title>
+                <firstName>John</firstName>
+                <lastName>Smith</lastName>
+                <mobilePhone>07958 654321</mobilePhone>
+                <dayTimePhone>01473 456789</dayTimePhone>
+                <eveningPhone>01372 370111</eveningPhone>
+                <email>john.smith@quartix.net</email>
+                <birthDate>1970-05-18</birthDate>
+                <address>
+                    <firstAddressLine>23 Acacia Avenue</firstAddressLine>
+                    <secondAddressLine>Lower Meadows</secondAddressLine>
+                    <thirdAddressLine>Epsom</thirdAddressLine>
+                    <fourthAddressLine>Leatherhead</fourthAddressLine>
+                    <fifthAddressLine>Surrey</fifthAddressLine>
+                    <postcode>KT22 4AA</postcode>
+                    <country>UK</country>
+                </address>
+                <hasPassword>false</hasPassword>
+            </customer>
+            <vehicle>
+                <make>Ford</make>
+                <model>Focus</model>
+                <type>Car</type>
+                <vin>ECEC496712345</vin>
+                <color>Blue</color>
+                <engineSize>1299</engineSize>
+                <fuelType>Petrol</fuelType>
+                <licensePlateNumber>ZZ23ZZ</licensePlateNumber>
+                <manufactureDate>2010-5-01</manufactureDate>
+            </vehicle>
+            <appointmentRequest>
+                <date>2016-05-19T09:00:00Z</date>
+                <deviceInstallationAddress>
+                    <firstAddressLine>The Chapel</firstAddressLine>
+                    <secondAddressLine>Wesley Road</secondAddressLine>
+                    <thirdAddressLine>Reigate Road</thirdAddressLine>
+                    <fourthAddressLine>Leatherhead</fourthAddressLine>
+                    <fifthAddressLine>Surrey</fifthAddressLine>
+                    <postcode>KT22 8RA</postcode>
+                    <country>UK</country>
+                </deviceInstallationAddress>
+            </appointmentRequest>
+        </message>
+        </textarea>
+    </div>
+    <div>
+        <input type="submit" />
+    </div>
+}
+
+@* <?xml version="1.0" encoding="UTF-8" ?><message><messageType>REGISTRATION</messageType><insurancePolicy><policyReference>ZTEST26</policyReference><policyUnderwriter>Markerstudy</policyUnderwriter><policyMileage>10000</policyMileage><policyStartDate>2016-07-01</policyStartDate><policyEndDate>2017-06-30</policyEndDate><policyEffectiveDate>2016-07-01</policyEffectiveDate><businessType>NB</businessType></insurancePolicy><customer><customerReference>SMITHJ124</customerReference><title>Mr</title><firstName>John</firstName><lastName>Smith</lastName><mobilePhone>07958 654321</mobilePhone><dayTimePhone>01372 370840</dayTimePhone><eveningPhone>01372 370111</eveningPhone><email>john.smith@quartix.net</email><birthDate>1970-05-18</birthDate><address><firstAddressLine>23 Acacia Avenue</firstAddressLine><secondAddressLine>Lower Meadows</secondAddressLine><thirdAddressLine>Epsom</thirdAddressLine><fourthAddressLine>Leatherhead</fourthAddressLine><fifthAddressLine>Surrey</fifthAddressLine><postcode>KT22 4AA</postcode><country>UK</country></address><hasPassword>false</hasPassword></customer><vehicle><make>Ford</make><model>Focus</model><type>Car</type><vin>ECEC496712345</vin><color>Blue</color><engineSize>1299</engineSize><fuelType>Petrol</fuelType><licensePlateNumber>ZZ23ZZ</licensePlateNumber><manufactureDate>2010-5-01</manufactureDate></vehicle><appointmentRequest><date>2016-05-19T09:00:00Z</date><deviceInstallationAddress><firstAddressLine>The Chapel</firstAddressLine><secondAddressLine>Wesley Road</secondAddressLine><thirdAddressLine>Reigate Road</thirdAddressLine><fourthAddressLine>Leatherhead</fourthAddressLine><fifthAddressLine>Surrey</fifthAddressLine><postcode>KT22 8RA</postcode><country>UK</country></deviceInstallationAddress></appointmentRequest></message> *@
