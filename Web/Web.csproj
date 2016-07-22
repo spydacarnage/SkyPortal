@@ -107,6 +107,7 @@
     <Compile Include="Controllers\TCASController.cs" />
     <Compile Include="Enums\CustomerStatus.cs" />
     <Compile Include="Enums\EnumString.cs" />
+    <Compile Include="Enums\IncomingResponseCode.cs" />
     <Compile Include="Enums\MessageStatus.cs" />
     <Compile Include="Enums\PolicyStatus.cs" />
     <Compile Include="Enums\VehicleStatus.cs" />

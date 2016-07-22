@@ -31,14 +31,13 @@ namespace SkyInsurance.SkyPortal.Classes
         public static object Create(XmlNode xml)
         {
             var vehicle = new XmlVehicle();
-            var node = $"{xml.ParentNode.Name}/{xml.Name}";
             try
             {
                 vehicle.Make = xml.SelectSingleNode("./make").InnerText;
             }
             catch
             {
-                return $"Invalid Entry - /vehicle/make";
+                return "Vehicle => Make";
             }
 
             try
@@ -47,7 +46,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /vehicle/model";
+                return "Vehicle => Model";
             }
 
             try
@@ -56,7 +55,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /vehicle/type";
+                return "Vehicle => Type";
             }
 
             try
@@ -65,7 +64,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /vehicle/vin";
+                return "Vehicle => VIN";
             }
 
             try
@@ -74,7 +73,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /vehicle/color";
+                return "Vehicle => Color";
             }
 
             try
@@ -83,7 +82,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /vehicle/engineSize";
+                return "Vehicle => Engine Size";
             }
 
             try
@@ -92,7 +91,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /vehicle/fuelType";
+                return "Vehicle => Fuel Type";
             }
 
             try
@@ -101,7 +100,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /vehicle/licensePlateNumber";
+                return "Vehicle => License Plate Number";
             }
 
             try
@@ -110,7 +109,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /vehicle/manufactureDate";
+                return "Vehicle => Manufacture Date";
             }
 
             return vehicle;

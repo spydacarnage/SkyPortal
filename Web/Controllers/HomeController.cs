@@ -12,7 +12,7 @@ namespace SkyInsurance.SkyPortal.Controllers
         {
             string output = $"Hello there. The clock is {DateTime.UtcNow}";
             output += "<br/><br/>";
-            output += "<a href=\"/TCAS/Temp\">Temp Input</a>";
+            output += "<a href=\"/TCAS/Temp\">TCAS Injector</a>";
 
             return Content(output);
         }

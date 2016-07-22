@@ -28,7 +28,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /appointmentRequest/date";
+                return "Appointment Request => Date";
 
             }
 

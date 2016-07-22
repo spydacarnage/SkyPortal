@@ -41,7 +41,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /customer/customerReference";
+                return "Customer => Customer Reference";
 
             }
 
@@ -51,7 +51,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /customer/title";
+                return "Customer => Title";
 
             }
 
@@ -61,7 +61,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /customer/firstName";
+                return "Customer => First Name";
 
             }
 
@@ -71,7 +71,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /customer/lastName";
+                return "Customer => Last Name";
 
             }
 
@@ -81,7 +81,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /customer/mobilePhone";
+                return "Customer => Mobile Phone";
 
             }
 
@@ -91,7 +91,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /customer/dayTimePhone";
+                return "Customer => Day Time Phone";
 
             }
 
@@ -101,7 +101,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /customer/eveningPhone";
+                return "Customer => Evening Phone";
 
             }
 
@@ -111,7 +111,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /customer/email";
+                return "Customer => Email";
 
             }
 
@@ -121,7 +121,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /customer/birthDate";
+                return "Customer => Birth Date";
 
             }
 
@@ -131,7 +131,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /customer/hasPassword";
+                customer.HasPassword = false;
 
             }
 

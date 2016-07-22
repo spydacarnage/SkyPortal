@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SkyInsurance.SkyPortal.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,6 +12,8 @@ namespace SkyInsurance.SkyPortal.Models
     public class IncomingMessage : DatedEntity
     {
         public string MessageXML { get; set; }
+
+        public IncomingResponseCode Code { get; set; }
 
         public string Response { get; set; }
 
@@ -32,5 +35,10 @@ namespace SkyInsurance.SkyPortal.Models
 
         [Display(Name = "Policy Number")]
         public string PolicyNo => Regex.Match(MessageXML, "<policyReference>(.*)</policyReference>").Groups[1].Value;
+
+        public string ToXML()
+        {
+            return $"<response><code>{(int)Code}</code><message>{Response}</message></response>";
+        }
     }
 }

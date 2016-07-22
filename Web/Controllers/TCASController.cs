@@ -1,4 +1,5 @@
 ﻿using SkyInsurance.SkyPortal.Classes;
+using SkyInsurance.SkyPortal.Enums;
 using SkyInsurance.SkyPortal.Models;
 using System;
 using System.Collections.Generic;
@@ -18,60 +19,21 @@ namespace SkyInsurance.SkyPortal.Controllers
 {
     public class TCASController : Controller
     {
-        //ICustomerService sCustomer;
-        //IApplicationUserService sAppUser;
-        //IAdditionalInfoService sUser;
-        //IServiceCR<IncomingMessage> sIncoming;
-        //IServiceCRU<OutgoingMessage> sOutgoing;
-        //IAllowedIPService sAllowedIPs;
-        //IRevaleeService sRevalee;
-
-        //public TCASController() : this(
-        //    new CustomerService(), 
-        //    new ApplicationUserService(), 
-        //    new AdditionalInfoService(), 
-        //    new IncomingMessageService(), 
-        //    new OutgoingMessageService(),
-        //    new AllowedIPService(),
-        //    new RevaleeService()) { }
-
-        //public TCASController(
-        //    ICustomerService customerService, 
-        //    IApplicationUserService appUserService, 
-        //    IAdditionalInfoService userService, 
-        //    IServiceCR<IncomingMessage> incomingMessageService, 
-        //    IServiceCRU<OutgoingMessage> outgoingMessageService,
-        //    IAllowedIPService allowedIPService,
-        //    IRevaleeService revaleeService) : base()
-        //{
-        //    sCustomer = customerService;
-        //    sAppUser = appUserService;
-        //    sUser = userService;
-        //    sIncoming = incomingMessageService;
-        //    sOutgoing = outgoingMessageService;
-        //    sAllowedIPs = allowedIPService;
-        //    sRevalee = revaleeService;
-        //}
 
         [HttpPost]
         public ActionResult Policy()
         {
-            //if (!sAllowedIPs.CheckIP(GetClientIP()))
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
-            //}
+            XmlMessage.Result messageResult = null;
+            try
+            {
+            	messageResult = XmlMessage.Create(Request.InputStream);
+            }
+            catch (Exception ex)
+            {
+                return Content($"<response><code>{(int)IncomingResponseCode.GeneralFailure}</code><message>{ex.ToString()}</message></response>");
+            }
 
-            var messageResult = XmlMessage.Create(Request.InputStream);
-
-            //if (messageResult.Message != null)
-            //{
-            //    HostingEnvironment.QueueBackgroundWorkItem(cancellationToken =>
-            //    {
-            //        ProcessMessage(messageResult.Message);
-            //    });
-            //}
-
-            return Content($"<response>{messageResult.IncomingMessage.Response}</response>");
+            return Content(messageResult.IncomingMessage.ToXML());
         }
 
         public ActionResult Temp()
@@ -83,11 +45,10 @@ namespace SkyInsurance.SkyPortal.Controllers
         [ValidateInput(false)]
         public ActionResult Temp(string message)
         {
-            var server = Request.Url.AbsoluteUri.Replace(Request.Url.AbsolutePath, "");
             var response = HttpSender.SendXML($"http://skyportal.apphb.com/TCAS/Policy", message);
             if (response.Exception == null)
             {
-                return Content(response.Message);
+                return Content($"<code>{response.Message.Replace("<", "&lt;").Replace(">", "&gt;")}</code>");
             }
             else
             {

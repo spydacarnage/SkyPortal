@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Xml;
 
@@ -26,15 +27,23 @@ namespace SkyInsurance.SkyPortal.Classes
 
         public static object Create(XmlNode xml)
         {
+            var camelToFirstLetterUpper = new Func<string, string>(value =>
+            {
+                string result = Regex.Replace(value, "\\b[a-z]", f => f.Value.ToUpper());
+                result = Regex.Replace(result, "([a-z])([A-Z])", f => $"{f.Groups[1].Value} {f.Groups[2].Value.ToUpper()}");
+
+                return result;
+            });
+
             var address = new XmlAddress();
-            var node = $"{xml.ParentNode.Name}/{xml.Name}";
+            var node = camelToFirstLetterUpper($"{xml.ParentNode.Name} => {xml.Name}");
             try
             {
                 address.AddressLine1 = xml.SelectSingleNode("./firstAddressLine").InnerText;
             }
             catch
             {
-                return $"Invalid Entry - /{node}/firstAddressLine";
+                return $"{node} => First Address Line";
             }
 
             try
@@ -43,7 +52,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /{node}/secondAddressLine";
+                return $"{node} => Second Address Line";
             }
 
             try
@@ -52,7 +61,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /{node}/thirdAddressLine";
+                return $"{node} => Third Address Line";
             }
 
             try
@@ -61,7 +70,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /{node}/fourthAddressLine";
+                return $"{node} => Fourth Address Line";
             }
 
             try
@@ -70,7 +79,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /{node}/fifthAddressLine";
+                return $"{node} => Fifth Address Line";
             }
 
             try
@@ -79,7 +88,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /{node}/postcode";
+                return $"{node} => Postcode";
             }
 
             try
@@ -88,7 +97,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /{node}/postcode";
+                return $"{node} => Country";
             }
 
             return address;

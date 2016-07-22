@@ -33,7 +33,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /insurancePolicy/policyReference";
+                return "Insurance Policy => Policy Reference";
             }
 
             try
@@ -42,7 +42,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /insurancePolicy/policyUnderwriter";
+                return "Insurance Policy => Policy Underwriter";
             }
 
             try
@@ -51,7 +51,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /insurancePolicy/policyMileage";
+                return "Insurance Policy => Policy Mileage";
             }
 
             try
@@ -60,7 +60,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /insurancePolicy/policyStartDate";
+                return "Insurance Policy => Policy Start Date";
             }
 
             try
@@ -69,7 +69,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /insurancePolicy/policyEndDate";
+                return "Insurance Policy => Policy End Date";
             }
 
             try
@@ -78,7 +78,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /insurancePolicy/policyEffectiveDate";
+                return "Insurance Policy => Policy Effective Date";
             }
 
             try
@@ -87,7 +87,7 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                return $"Invalid Entry - /insurancePolicy/businessType";
+                return "Insurance Policy => Business Type";
             }
 
 

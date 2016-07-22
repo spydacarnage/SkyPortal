@@ -1,4 +1,5 @@
-﻿using SkyInsurance.SkyPortal.Models;
+﻿using SkyInsurance.SkyPortal.Enums;
+using SkyInsurance.SkyPortal.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -46,7 +47,6 @@ namespace SkyInsurance.SkyPortal.Classes
             string input = sr.ReadToEnd().Trim();
             var result = new Result();
             result.IncomingMessage = new IncomingMessage(input);
-            var message = new XmlMessage();
 
             var xml = new XmlDocument();
             try
@@ -55,15 +55,19 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch (Exception ex)
             {
-                result.IncomingMessage.Response = $"ERROR - {ex.ToString()}";
+                result.IncomingMessage.Code = IncomingResponseCode.InvalidXml;
+                result.IncomingMessage.Response = $"{ex.ToString()}";
                 return result;
             }
 
             if (xml.DocumentElement.Name != "message")
             {
-                result.IncomingMessage.Response = "ERROR - Message not found";
+                result.IncomingMessage.Code = IncomingResponseCode.InvalidXml;
+                result.IncomingMessage.Response = "Message not found";
                 return result;
             }
+
+            var message = new XmlMessage();
 
             try
             {
@@ -71,13 +75,15 @@ namespace SkyInsurance.SkyPortal.Classes
             }
             catch
             {
-                result.IncomingMessage.Response = $"ERROR - Invalid Entry - /messageType";
+                result.IncomingMessage.Code = IncomingResponseCode.InvalidData;
+                result.IncomingMessage.Response = "Message Type";
                 return result;
             }
 
             var customerResult = XmlCustomer.Create(xml.SelectSingleNode("//customer"));
             if (customerResult is string)
             {
+                result.IncomingMessage.Code = IncomingResponseCode.InvalidData;
                 result.IncomingMessage.Response = customerResult.ToString();
                 return result;
             }
@@ -86,6 +92,7 @@ namespace SkyInsurance.SkyPortal.Classes
             var policyResult = XmlPolicy.Create(xml.SelectSingleNode("//insurancePolicy"));
             if (policyResult is string)
             {
+                result.IncomingMessage.Code = IncomingResponseCode.InvalidData;
                 result.IncomingMessage.Response = policyResult.ToString();
                 return result;
             }
@@ -94,6 +101,7 @@ namespace SkyInsurance.SkyPortal.Classes
             var vehicleResult = XmlVehicle.Create(xml.SelectSingleNode("//vehicle"));
             if (vehicleResult is string)
             {
+                result.IncomingMessage.Code = IncomingResponseCode.InvalidData;
                 result.IncomingMessage.Response = vehicleResult.ToString();
                 return result;
             }
@@ -102,11 +110,13 @@ namespace SkyInsurance.SkyPortal.Classes
             var appointmentResult = XmlAppointment.Create(xml.SelectSingleNode("//appointmentRequest"));
             if (appointmentResult is string)
             {
+                result.IncomingMessage.Code = IncomingResponseCode.InvalidData;
                 result.IncomingMessage.Response = appointmentResult.ToString();
                 return result;
             }
             message.Appointment = appointmentResult as XmlAppointment;
 
+            result.IncomingMessage.Code = IncomingResponseCode.OK;
             result.IncomingMessage.Response = "OK";
             result.Message = message;
             return result;
